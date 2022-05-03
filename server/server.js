@@ -14,7 +14,7 @@ casual.define('user', function() {
 
 const getUserData= () => {
   let res= []
-  for (var i = 0; i <=20; i++) {
+  for (var i = 0; i <=2000; i++) {
    res.push(casual.user)
   }
   return res;
