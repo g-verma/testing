@@ -3,21 +3,26 @@ import { useQuery } from "@apollo/client";
 import { Cardx } from "../components/Card";
 import { GET_USERS } from "../lib/queries";
 import Container from '@mui/material/Container';
+import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid';
 import style from './users.module.css'
 
 export default function Index() {
   const [users, setUsers] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(20);
   const { error, fetchMore } = useQuery(GET_USERS, {
-    variables: { page: page },
+    variables: { limit: page },
     onCompleted: (data) => {
-
-      if (!users.length) {
+      console.log('data', data)
+      if(data){
         setUsers(data.users);
       }
     }
   });
+
+  const loadMoreItem =() =>{
+    setPage(users.length+20)
+}
   if (error) return <p>Error...</p>;
   return (
     <div className={style.wrapper} >
@@ -29,6 +34,7 @@ export default function Index() {
         </Grid>
       ))}
       </Grid>
+      <Container className={style.moreBtn}> <Button variant="outlined" onClick={loadMoreItem}>Load More..</Button> </Container>
     </Container>
     </div>
   );
