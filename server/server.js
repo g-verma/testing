@@ -12,9 +12,10 @@ casual.define('user', function() {
   };
 });
 
-const getUserData= () => {
+const getUserData= (args) => {
+  const { limit} = args
   let res= []
-  for (var i = 0; i <=2000; i++) {
+  for (var i = 0; i <=limit-1; i++) {
    res.push(casual.user)
   }
   return res;
@@ -29,14 +30,14 @@ type User {
   email: String,
   phone: String
 }
-type Query {
-  users: [User]
+type Query{
+  users(offset: Int, limit: Int, first:Int): [User]
 }
 `;
 
 const resolvers = {
   Query: {
-    users: (root, args, context) => getUserData()
+    users: (root, args, context) => getUserData(args)
   }
 };
 
