@@ -1,11 +1,8 @@
-import Link from 'next/link'
-import Name from '../components/Name'
+import User from './users.tsx'
 
 const Page = () => (
   <div>
-    Welcome, <Name />
-    <br/><br/>
-    <Link href="/about"><a>About</a></Link>
+   <User />
   </div>
 )
 
