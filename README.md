@@ -14,3 +14,8 @@ a nextjs app
 
 ## you can access your client page at
 ## localhost:3000/users
+
+
+
+### to run cypress, open terminal, run app in other terminal
+npx cypress open
